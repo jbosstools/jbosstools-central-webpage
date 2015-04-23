@@ -1,0 +1,365 @@
+@import "jboss-variables";
+@import "../bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap";
+
+//
+// JBOSS
+// --------------------------------------------------
+html {
+  //trying to prevent font flickering, still not perfect though
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background: url(../images/background.jpg) top center repeat-x;
+  background-size: auto 440px;
+  color: #666;
+  margin: 0px;
+  @media (min-width: $screen-md-min) {
+    background-size: auto 500px;
+  }
+
+  .container-bg {
+    background: none;
+  }
+}
+
+.jumbotron {
+  text-align: center;;
+  background: none;
+  margin-bottom: 0;
+  padding: 15px 0 10px;
+  @media (min-width: $screen-sm-min) {
+    padding: 15px 0 20px;
+  }
+  h1 {
+    margin-bottom: 15px;
+    color: #4a5d74;
+    font-size: 35px;
+    @media (min-width: $screen-sm-min) {
+      font-size: 45px;
+    }
+  }
+  p {
+    padding-top: 5px;
+    font-size: 14px;
+  }
+  .search-row {
+    margin-top: 5px;
+    @media (min-width: $screen-sm-min) {
+      margin-top: 15px;
+    }
+    .search-area {
+      float: none;
+      margin: 0 auto;
+      .form-control {
+        height: 36px;
+        font-size: 12px;
+        border-radius: 4px;
+        @media (min-width: $screen-sm-min) {
+          height: 46px;
+          font-size: 18px;
+          line-height: 1.3333333;
+          border-radius: 6px;
+        }
+      }
+    }
+  }
+}
+
+
+//
+// Home Text Carousel
+// --------------------------------------------------
+$carousel-top: 40px;
+.carousel.vertical > .carousel-inner {
+  height: 100%;
+
+  > .item {
+    height: 40px;
+    @include transition(1.6s ease-in-out top);
+
+    // WebKit CSS3 transforms for supported devices
+    @media all and (transform-3d), (-webkit-transform-3d) {
+      @include transition-transform(1.6s ease-in-out);
+
+      &.next,
+      &.active.right {
+        @include translate3d(0, 100%, 0);
+        top: 0;
+      }
+      &.prev,
+      &.active.left {
+        @include translate3d(0, -100%, 0);
+        top: 0;
+      }
+      &.next.left,
+      &.prev.right,
+      &.active {
+        @include translate3d(0, 0, 0);
+        top: 0;
+      }
+    }
+  }
+  > .active {
+    top: 0;
+  }
+
+  > .next,
+  > .prev {
+    height: 100%;
+  }
+
+  > .next {
+    top: 100%;
+  }
+  > .prev {
+    top: -100%;
+  }
+  > .next.left,
+  > .prev.right {
+    top: 0;
+  }
+
+  > .active.left {
+    top: -100%;
+  }
+  > .active.right {
+    top: 100%;
+  }
+}
+
+
+
+
+
+//
+// Search Form
+// --------------------------------------------------
+.form-control-feedback {
+  padding-left: 10px;
+  text-align: left;
+  pointer-events: auto;
+  .input-lg + & {
+    width: 120px;
+  }
+}
+.input-lg + .form-control-feedback {
+  height: 36px;
+  line-height: 36px;
+  @media (min-width: $screen-sm-min) {
+    height: 46px;
+  line-height: 46px;
+  }
+}
+
+.has-feedback .form-control {
+  padding-right: 119px;
+}
+
+.input-clear {
+  display: none;
+  .has-feedback & {
+    display: block;
+  }
+  a {
+    color: #666;
+    font-size: 12px;
+    &, :focus {
+      outline: none;
+    }
+    .glyphicon {
+      top: 3px;
+      font-size: 14px;
+      color: #d9d9d9;
+      margin-right: 6px;
+    }
+  }
+}
+
+.home-icons {
+  margin-bottom: 15px;
+  padding: 20px 0;
+  background-color: #eee;
+  border: 2px solid #ccc;
+  border-width: 2px 0;
+  @media (min-width: $screen-sm-min) {
+    margin-bottom: 35px;
+  }
+  .icon-position {
+    display: block;
+    text-align: center;
+    color: #333;
+    p {
+      margin-top: 8px;
+      margin-bottom: 0;
+    }
+  }
+  .icon-left {
+    @extend .icon-position;
+    margin-left: 25%;
+  }
+  .icon-mid {
+    @extend .icon-position;
+  }
+  .icon-right {
+    @extend .icon-position;
+    margin-right: 25%;
+  }
+  .icon {
+    opacity: .3;
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 50px;
+    height: 50px;
+    margin: 0 auto;
+    @media (min-width: $screen-sm-min) {
+      width: 75px;
+      height: 75px;
+    }
+  }
+  .icon-addtools {
+    @extend .icon;
+    background-image: url(../images/icon-addtools.svg);
+  }
+  .icon-info {
+    @extend .icon;
+    background-image: url(../images/icon-info.svg);
+  }
+  .icon-community {
+    @extend .icon;
+    width: 61px;
+    @media (min-width: $screen-sm-min) {
+      width: 89px;
+    }
+    background-image: url(../images/icon-community.svg);
+  }
+}
+
+.container-bg {
+  background: #eee;
+  padding-bottom: 25px;
+}
+
+.container-results {
+  background-color: #eee;
+  border-top: 2px solid #ccc;
+  height: 100%;
+  .highlight {
+    background: #f2eec1;
+  }
+}
+
+.list-group {
+  margin-bottom: 0;
+  .list-group-item {
+    border: none;
+    background: none;
+  }
+}
+
+.home .list-group {
+  .list-group-item {
+    padding: 2px 15px;
+  }
+}
+
+#wizards a.list-group-item-heading {
+  white-space: nowrap;
+}
+
+a.list-group-item-heading {
+  display: block;
+  margin: 0;
+  line-height: 30px;
+  //white-space: nowrap;
+  color: #666;
+  //font-weight: bold;
+  :hover {
+    text-decoration: none;
+  }
+  .home & .i {
+    margin-right: 8px;
+  }
+  .i {
+    position: relative;
+    display: inline-block;
+    min-width: 28px;
+    margin-right: 6px;
+    text-align: center;
+    .i-default {
+      position: absolute;
+      right: 0;
+      top: -18px;
+      min-width: 24px;
+      min-height: 24px;
+      background-repeat: no-repeat;
+      background-position: 0 0;
+      background-image: url(../images/icon-default.gif);
+    }
+  }
+  img {
+    max-width: 25px;
+    border:0px
+  }
+}
+
+.pager {
+  margin: 10px 0 0;
+  font-size: 11px;
+    li {
+    > a:hover,
+    > a:focus {
+      text-decoration: underline;
+    }
+  }
+}
+
+.pagination {
+  :hover {
+    text-decoration: underline;
+  }
+  > .active > a {
+    text-decoration: underline;
+  }
+}
+
+//
+// Results
+// --------------------------------------------------
+.results {
+  .list-group {
+    margin-left: 20px;
+    .list-group-item-text {
+      margin-left: 5px;
+      font-size: 13px;
+    }
+  }
+}
+
+//
+// Popover | Popper
+// --------------------------------------------------
+.popover {
+  max-width: 296px;
+}
+.popper-content {
+  display: none;
+}
+.popover-content {
+  padding: 5px 13px 10px 10px;
+  h4 {
+    font-weight: bold;
+    font-size: 14px;
+    img {
+      margin-right: 5px;
+    }
+  }
+  p {
+    font-size: 12px;
+    margin: 0 0 5px 5px;
+  }
+}
+
+.popover > .arrow {
+  display: none;
+}

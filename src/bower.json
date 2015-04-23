@@ -1,0 +1,31 @@
+{
+  "name": "jbosstools-central-webpage",
+  "version": "0.0.1",
+  "authors": [
+    "Red Hat, Inc."
+  ],
+  "license": "Eclipse Public License 1.0",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap-sass-official": "~3.3.4",
+    "twbs-pagination": "1.2.5",
+    "jquery-highlight": "3.2.2"
+  },
+  "exportsOverride": {
+     "jquery-highlight": {
+       "js": "**/*.js"
+     },
+     "*": {
+       "js": "**/*.min.js",
+       "css": "**/*.css",
+       "fonts": "**/fonts/*"
+     }
+  }
+}

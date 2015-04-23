@@ -6,3 +6,8 @@ pom.xml.next
 release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
+.settings/
+.project
+bower_components/
+npm_modules/
+.DS_Store

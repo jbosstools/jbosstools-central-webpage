@@ -1,0 +1,14 @@
+{
+  "name": "jboss-central-webpage",
+  "version": "0.0.1",
+  "description": "JBoss Central Web Page",
+  "author": "Red Hat, Inc.",
+  "license": "Eclipse Public License 1.0",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-bower-task": "^0.4.0",
+    "grunt-contrib-compass": "^1.0.1",
+    "grunt-contrib-uglify": "^0.8.0",
+    "grunt-contrib-watch": "^0.6.1"
+  }
+}
