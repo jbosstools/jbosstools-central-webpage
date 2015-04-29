@@ -18,6 +18,10 @@ body {
     background-size: auto 500px;
   }
 
+  .highlight {
+    background: #FFFFA0;
+  }
+
   .container-bg {
     background: none;
   }
@@ -177,13 +181,13 @@ $carousel-top: 40px;
 }
 
 .home-icons {
-  margin-bottom: 15px;
+  //margin-bottom: 15px;
   padding: 20px 0;
   background-color: #eee;
   border: 2px solid #ccc;
   border-width: 2px 0;
   @media (min-width: $screen-sm-min) {
-    margin-bottom: 35px;
+    //margin-bottom: 35px;
   }
   .icon-position {
     display: block;
@@ -260,6 +264,14 @@ $carousel-top: 40px;
 .home .list-group {
   .list-group-item {
     padding: 2px 15px;
+  }
+}
+
+
+#wizards {
+  margin-top: 15px;
+  @media (min-width: $screen-sm-min) {
+    margin-top: 35px;
   }
 }
 
@@ -364,6 +376,22 @@ a.list-group-item-heading {
   display: none;
 }
 
+.tags {
+  li {
+    cursor: pointer;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 4px;
+    background-color: #ccc;
+  }
+}
+
 #earlyaccess {
   display: none;
+  margin-top: 0px;
+  em {
+    padding: 5px;
+    text-align: center;
+    display: block;
+  }
 }
