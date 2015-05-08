@@ -46,17 +46,20 @@ body {
   text-align: center;;
   background: none;
   margin-bottom: 0;
-  padding: 15px 0 10px;
+  padding: 0px 0 10px;
   @media (min-width: $screen-sm-min) {
-    padding: 15px 0 20px;
+    padding: 5px 0 20px;
   }
   h1 {
     margin-bottom: 15px;
     color: #4a5d74;
-    font-size: 35px;
+    font-size: 30px;
     @media (min-width: $screen-sm-min) {
-      font-size: 45px;
+      font-size: 40px;
     }
+  }
+  h2 {
+    margin-top: 5px;
   }
   p {
     padding-top: 5px;
@@ -228,10 +231,14 @@ $carousel-top: 40px;
     opacity: .3;
     background-size: contain;
     background-repeat: no-repeat;
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     margin: 0 auto;
     @media (min-width: $screen-sm-min) {
+      width: 50px;
+      height: 50px;
+    }
+    @media (min-width: $screen-md-min) {
       width: 75px;
       height: 75px;
     }
@@ -284,9 +291,9 @@ $carousel-top: 40px;
 
 
 #wizards {
-  margin-top: 15px;
-  @media (min-width: $screen-sm-min) {
-    margin-top: 35px;
+  margin-top: 10px;
+  @media (min-width: $screen-md-min) {
+    margin-top: 25px;
   }
 }
 

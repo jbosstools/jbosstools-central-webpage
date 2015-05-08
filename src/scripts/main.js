@@ -261,7 +261,7 @@ function loadBuzz(buzzFeed) {
 
 function loadWizards(data) {
   wizards = data;
-  var template = '<div class="col-md-3 col-sm-6 col-xs-6"><div class="list-group">'
+  var template = '<div class="col-md-3 col-sm-4 col-xs-6"><div class="list-group">'
             +   '<div class="list-group-item" data-wizard-id="@id@">'
             +     '<a href="#" class="list-group-item-heading popper" data-toggle="popover"><span class="i"><img src="@iconUrl@"></span>@title@</a>'
             +     '<div class="popper-content">'
