@@ -9,7 +9,7 @@ var $searchBar   = $('#searchBar'),
     blacklist    = ['h2-console', 'kitchensink-cordova-contacts', 'kitchensink-cordova', 'push-helloworld-cordova'],
     results      = [],
     wizards = [{"id":"html5.wizard","label":"HTML5 Project","description":"HTML 5 Project is a sample, deployable Maven 3 project to help you get started developing a Mobile HTML5 web application on JBoss Enterprise Application Platform 6 or JBoss Application Server 7.1.\n This project creates a pure HTML5 based front end which interacts with server side content through RESTful endpoints.","iconUrl":"images/icon-html5.png",},{"id":"openshift.wizard","label":"OpenShift Application","description":"Create any kind of application and deploy it in the cloud using OpenShift from Red Hat.","iconUrl":"images/icon-openshift.gif",},{"id":"forge.wizard","label":"AngularJS Forge","description":"This project is a sample project that will show how to build an JavaEE application with AngularJS, HTML5 and Bootstrap 3 by using JBoss Forge. \nThe application is deployable to JBoss Enterprise Platform 6 or JBoss Application Server 7.1 or higher.","iconUrl":"images/icon-default.png",},{"id":"javaee.wizard","label":"Java EE Web Project","description":"Java EE Web Project is a sample, deployable Maven 3 project to help you get your foot in the door developing with Java EE 6 on JBoss Enterprise Application Platform 6 or JBoss Application Server 7.1. \nThis project is setup to allow you to create a compliant Java EE 6 application using JSF 2.0, CDI 1.0, EJB 3.1, JPA 2.0 and Bean Validation 1.0.","iconUrl":"images/icon-javaee.gif",},{"id":"maven.wizard","label":"Maven Project","description":"Create a Maven-based project.","iconUrl":"images/icon-default.png",},{"id":"hybrid.mobile.wizard","label":"Hybrid Mobile Project","description":"Create a hybrid mobile application using Apache Cordova for cross-platform mobile development.","iconUrl":"images/icon-hybridmobile.gif",}]
-	favorites = [];
+	favorites = [{"id":"jbossdeveloper_quickstart-09f74407","label":"forge-from-scratch","title":"forge-from-scratch: Shows How Forge Can Generate an Application","description":"The `forge-from-scratch` quickstart demonstrates how *JBoss Forge 2* can generate a Java EE (JPA, EJB 3.1, JAX-RS, JSF) web-enabled database application.","tags":["product:EAP-7.0.GA","Forge"]}];
 	showOnStartup = true;
 
 
@@ -290,6 +290,7 @@ function loadWizards(newWizards, newFavorites) {
             +     '<div class="popper-content">'
             +       '<h4><img src="@iconUrl@">@title@</h4>'
             +       '<p>@description@</p>'
+            +       '<p>@product@</p>'
             +     '</div>'
             +   '</div>'
             +'</div></div>';
@@ -306,10 +307,24 @@ function loadWizards(newWizards, newFavorites) {
     	html = replaceAll("@id@", w.id, html);
         html = replaceAll("@iconUrl@", iconUrl, html);
         html = replaceAll("@description@", w.description, html);
+        html = replaceAll("@product@", getProduct(w), html);
     var $element = $(html);
     addPopover($element.find(".popper"));
     $element.appendTo($wizards);
   }
+}
+
+function getProduct(qs) {
+	if (!qs.hasOwnProperty('tags')) {
+		return "";
+	}
+	for (var i=0; i< qs.tags.length; i++) {
+		var tag = qs.tags[i];
+		if (containsIgnoreCase(tag, "product:")) {
+			return "<em>Product: " +  tag.split(":")[1].toUpperCase() +"</em>";
+		}
+	}
+	return "";
 }
 
 function replaceAll(find, replace, str) {
