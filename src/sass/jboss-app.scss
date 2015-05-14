@@ -407,6 +407,10 @@ a.list-group-item-heading {
     border-radius: 4px;
     background-color: #ccc;
   }
+  li.product {
+    color: $product-tag-color;
+    background-color: $product-tag-bg;
+  }
 }
 
 #earlyaccess {
