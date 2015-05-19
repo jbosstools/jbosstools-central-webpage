@@ -20,6 +20,10 @@
 					<jsSourceDirectory>/</jsSourceDirectory>
 					<warTargetDirectory>/</warTargetDirectory>
 					<showColors>true</showColors>
+
+					<gruntExecutable>node_modules/grunt-cli/bin/grunt</gruntExecutable>
+					<runGruntWithNode>true</runGruntWithNode>
+
 					<!-- <gruntOptions> <gruntOption>- - verbose</gruntOption> </gruntOptions> -->
 				</configuration>
 				<executions>
