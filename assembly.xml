@@ -15,7 +15,7 @@
         <include>css/**</include>
         <include>lib/**</include>
         <include>images/**</include>
-        <include>index.html</include>
+        <include>*.html</include>
       </includes>
     </fileSet>
   </fileSets>
