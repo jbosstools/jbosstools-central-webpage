@@ -245,11 +245,16 @@ $carousel-top: 40px;
   }
   .icon-addtools {
     @extend .icon;
-    background-image: url(../images/icon-addtools.svg);
+	/*workaround for old firefox 3.6. Show png images agains svg*/
+    background-image: url(../images/icon-addtools.png);
+	-moz-background-size: contain;
+	background-image: url(../images/icon-addtools.svg), linear-gradient(transparent, transparent);
   }
   .icon-info {
     @extend .icon;
-    background-image: url(../images/icon-info.svg);
+	background-image: url(../images/icon-info.png);
+	-moz-background-size: contain;
+	background-image: url(../images/icon-info.svg), linear-gradient(transparent, transparent);
   }
   .icon-community {
     @extend .icon;
@@ -257,7 +262,9 @@ $carousel-top: 40px;
     @media (min-width: $screen-sm-min) {
       width: 89px;
     }
-    background-image: url(../images/icon-community.svg);
+	background-image: url(../images/icon-community.png);
+	-moz-background-size: contain;
+	background-image: url(../images/icon-community.svg), linear-gradient(transparent, transparent);
   }
 }
 

@@ -14,6 +14,7 @@
     "tests"
   ],
   "dependencies": {
+	"jquery": "1.9.1",
     "bootstrap-sass-official": "~3.3.4",
     "twbs-pagination": "1.2.5",
     "jquery-highlight": "3.2.2"
