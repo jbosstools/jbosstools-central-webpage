@@ -23,6 +23,9 @@
      "jquery-highlight": {
        "js": "**/*.js"
      },
+     "jquery": {
+       "js": "**/jquery.min.js"
+     },
      "*": {
        "js": "**/*.min.js",
        "css": "**/*.css",
