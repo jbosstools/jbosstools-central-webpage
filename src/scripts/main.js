@@ -55,7 +55,9 @@ function performSearch(terms) {
   results = filter(terms);
   var total = results.length;
   var eltPerPage = 4;
-  console.log("Found "+total+" results");
+  //disabled for compatibility with old Xulrunner 1.9 
+  //console.log("Found "+total+" results");
+  
   //reset paginator
   var $paginator = $('#pagination-results');
   $paginator.empty();
@@ -278,7 +280,8 @@ function loadBuzz(buzzFeed) {
       $buzzDiv.html(content);
       $buzzDiv.appendTo($buzz);
     } catch(O_o) {
-      console.log("Error loading buzz :"+O_o.message);
+	  //disabled for compatibility with old Xulrunner 1.9
+      //console.log("Error loading buzz :"+O_o.message);
     }
 
   }
