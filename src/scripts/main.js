@@ -39,7 +39,7 @@ function toggleSearch(terms) {
   if (terms != null) {
   	$search.val(terms);
   }
-  terms = $search.val().toLowerCase();
+  terms = $search.val().trim().toLowerCase();
   var searching = Boolean( terms );
   if (!searching) {
     $search.val('').focus();
