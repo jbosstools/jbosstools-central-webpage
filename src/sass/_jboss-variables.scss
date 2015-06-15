@@ -25,4 +25,7 @@ $screen-sm:                  730px !default;
 $product-tag-bg:                       rosybrown;
 $product-tag-color:                    white;
 
+//JBIDE-19980 need better contrast
+$darkish-grey:                         #333;
+
 $icon-font-path:                       "../lib/bootstrap-sass-official/fonts/" !default;

@@ -276,6 +276,7 @@ $carousel-top: 40px;
 .container-results {
   background-color: #eee;
   border-top: 2px solid #ccc;
+  color: $darkish-grey;
   height: 100%;
   .highlight {
     background: #f2eec1;
@@ -313,7 +314,7 @@ a.list-group-item-heading {
   margin: 0;
   line-height: 30px;
   //white-space: nowrap;
-  color: #666;
+  color: $darkish-grey;
   //font-weight: bold;
   :hover {
     text-decoration: none;
