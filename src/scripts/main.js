@@ -314,6 +314,11 @@ function loadWizards(newWizards, newFavorites) {
 
   $wizards = $("#wizards .row");
 
+  //JBIDE-19985 need to hide popovers before emptying list
+  $wizards.find(".popper").each(function() {
+    $(this).popover('hide');
+  });
+
   $wizards.empty();
   
   for (i=0; i < elts.length; i++) {
