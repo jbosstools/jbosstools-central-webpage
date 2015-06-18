@@ -131,9 +131,9 @@ function tagsMatch(result, target) {
 	if (!result.hasOwnProperty('tags')) {
 		return false;
 	}
-	for (var i=0; i < result.tags.length; i++) {
-		var tag = result.tags[i].toLowerCase();
-		if (containsIgnoreCase(tag,":")) {
+	for (var i = 0; i < result.tags.length; i++) {
+		var tag = cleanUpTag(result.tags[i].toLowerCase());
+		if (containsIgnoreCase(tag, ":")) {
 			tag = tag.split(":")[1];
 		}
 		if (tag != "central" && tag != "wizard" && containsIgnoreCase(tag, target)) {
@@ -147,7 +147,7 @@ function isEnabled(result) {
 	if (integrationStackSupport || !result.hasOwnProperty('tags')) {
 		return true;
 	}
-	for (var i=0; i < result.tags.length; i++) {
+	for (var i = 0; i < result.tags.length; i++) {
 		var tag = result.tags[i].toLowerCase();
 		if (containsIgnoreCase(tag,"fuse") || containsIgnoreCase(tag,"brms")) {
 		 	return false;
@@ -159,8 +159,6 @@ function isEnabled(result) {
 function containsIgnoreCase(value, target) {
 	return value.toLowerCase().indexOf(target) > -1;
 }
-
-
 
 // Home - Popovers
 // ==========================
@@ -188,7 +186,7 @@ function closePopover(checkbox) {
 	var show = checkbox.checked;
 	if (show != showOnStartup) {
 		showOnStartup = show;
-		storeShowOnStartup();		
+		storeShowOnStartup();
 	}
 }
 
@@ -227,13 +225,6 @@ function result2Html(result) {
   html += buildTags(result)+'</div>';
   $qsDiv = $(html);
 
-
-//  $qsTemplate = $("#quickstart-template").find("div");
-//  $qsDiv = $qsTemplate.clone();
-//  $qsDiv.attr('data-quickstart-id', result.id);
-//  $qsDiv.find("a").html('<span class="i"><span class="i-default"></span></span>'+ result.id);
-//  $qsDiv.find("p").html('<p class="list-group-item-text">'+result.description+'</p>');
-
   return $qsDiv;
 }
 
@@ -248,10 +239,10 @@ function buildTags(result) {
 		var isRuntime = false;
 		var tagValue = tag;
 		var specialClass = "";
-		if (containsIgnoreCase(tag,":")) {
-		   var specialTag = tag.split(":");
-		   specialClass = specialTag[0];
-		   tagValue= specialTag[1];
+		if (containsIgnoreCase(tag, ":")) {
+		  var specialTag = tag.split(":");
+		  specialClass = specialTag[0];
+		  tagValue = cleanUpTag(specialTag[1]);
 		}
 		
 		if (tagValue != "central" && tagValue != "wizard") {
@@ -266,9 +257,6 @@ function loadBuzz(buzzFeed) {
 
   $buzz = $('#buzz');
   $buzzTemplate = $("#buzz").find("div.active").clone();
-  //<div class="active item">
-  //     <p>Brand new?  Try our <a href="http://www.jboss.org/ticket-monster/">TicketMonster</a> tutorial.</p>
-  //</div>
   $buzzTemplate.removeClass('active');
 
   for (i=0; i < Math.min(10, buzzFeed.length); i++) {
@@ -288,7 +276,6 @@ function loadBuzz(buzzFeed) {
   $('#buzz-carousel').carousel({
     interval: 3500
   });
-  //alert("buzz loaded");
 }
 
 function loadWizards(newWizards, newFavorites) {
@@ -340,8 +327,8 @@ function getProduct(qs) {
 	if (!qs.hasOwnProperty('tags')) {
 		return "";
 	}
-	for (var i=0; i< qs.tags.length; i++) {
-		var tag = qs.tags[i];
+	for (var i = 0; i < qs.tags.length; i++) {
+		var tag = cleanUpTag(qs.tags[i]);
 		if (containsIgnoreCase(tag, "product:")) {
 			return "<em>Product: " +  tag.split(":")[1].toUpperCase() +"</em>";
 		}
@@ -432,7 +419,6 @@ function setIntegrationStackSupport(value) {
 // ==========================
 $(document).ready(function() {
   //register events per html elements
-  //registerProxyWizardClicks();
   registerQuickstartClicks();
   registerButtonClicks();
   registerTagClicks();
@@ -447,4 +433,10 @@ $(document).ready(function() {
   
 });
 
-
+function cleanUpTag(tag) {
+	var weirdTagIndex = tag.indexOf("-jboss_as_quickstarts");
+	if (weirdTagIndex > -1) {
+		tag = tag.substring(0, weirdTagIndex);
+	}
+	return tag;
+}
