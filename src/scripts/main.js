@@ -356,7 +356,6 @@ function registerQuickstartClicks() {
     var id = $(this).parent().data("project-id");
     var type = $(this).parent().data("project-type");
     delegateToIDE(type, id);
-    $clearSearch.click();
   });
 }
 
