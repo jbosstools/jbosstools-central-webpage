@@ -415,8 +415,47 @@ function setIntegrationStackSupport(value) {
 	integrationStackSupport = value;
 }
 
+function drop(event) {
+	event.preventDefault();
+	var data;
+	var msie = document.documentMode;
+	if (msie) {
+		data = event.dataTransfer.getData("Text");
+	} else {
+		data = event.dataTransfer.getData("text/uri-list");
+	}
+	var DOWNLOAD_JBOSS_ORG_JBOSSTOOLS_CENTRAL_INSTALL_CONNECTORS = "http://download.jboss.org/jbosstools/central/install?connectors=";
+	var LEGACY_DEVSTUDIO_JBOSS_COM_CENTRAL_INSTALL_CONNECTORS = "https://devstudio.jboss.com/central/install?connectors=";
+	var DEVSTUDIO_REDHAT_COM_CENTRAL_INSTALL_CONNECTORS = "https://devstudio.redhat.com/central/install?connectors=";
+	var connectorIds;
+	if (data.indexOf(DOWNLOAD_JBOSS_ORG_JBOSSTOOLS_CENTRAL_INSTALL_CONNECTORS) === 0) {
+		connectorIds = data.replace(DOWNLOAD_JBOSS_ORG_JBOSSTOOLS_CENTRAL_INSTALL_CONNECTORS, "");
+	} else if (data.indexOf(DEVSTUDIO_REDHAT_COM_CENTRAL_INSTALL_CONNECTORS) === 0) {
+		connectorIds = url.replace(DEVSTUDIO_REDHAT_COM_CENTRAL_INSTALL_CONNECTORS, "");
+	} else if (data.indexOf(LEGACY_DEVSTUDIO_JBOSS_COM_CENTRAL_INSTALL_CONNECTORS) === 0) {
+		connectorIds = url.replace(LEGACY_DEVSTUDIO_JBOSS_COM_CENTRAL_INSTALL_CONNECTORS, "");
+	}
+	delegateToIDE("drop", connectorIds);
+	return false;
+}
+
+function registerDND() {
+	$(document.body).bind("dragover", function(event) {
+		event.preventDefault();
+	}, false);
+	$(document.body).bind("dragenter", function(event) {
+		event.preventDefault();
+	}, false);
+	$(document.body).bind("drop", function(e) {
+		e.preventDefault();
+		return false;
+	});
+}
+
 // ==========================
 $(document).ready(function() {
+  registerDND();
+  document.body.addEventListener('drop',drop,false);
   //register events per html elements
   registerQuickstartClicks();
   registerButtonClicks();
