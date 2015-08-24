@@ -380,6 +380,16 @@ function registerTagClicks() {
 	});
 }
 
+function handleEarlyAccess(enabled, earlyAccessText) {
+	if (enabled) {
+		$("#earlyaccess").html(earlyAccessText);
+		$("#earlyaccess").show();
+	} else {
+		$("#earlyaccess").hide();
+	}
+
+}
+
 function toggleEarlyAccess(enabled) {
   if (enabled) {
     $("#earlyaccess").show();
