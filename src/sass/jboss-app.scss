@@ -307,6 +307,8 @@ $carousel-top: 40px;
 
 #wizards a.list-group-item-heading {
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 a.list-group-item-heading {
