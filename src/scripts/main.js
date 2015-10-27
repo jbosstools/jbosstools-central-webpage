@@ -147,6 +147,9 @@ function isEnabled(result) {
 	if ((integrationStackSupport && isEarlyAccessEnabled) || !result.hasOwnProperty('tags')) {
 		return true;
 	}
+  if (containsIgnoreCase(result.label, "fuse") || containsIgnoreCase(tag,"brms")) {
+    return false;
+  }
 	for (var i = 0; i < result.tags.length; i++) {
 		var tag = result.tags[i].toLowerCase();
 		if (containsIgnoreCase(tag,"fuse") || containsIgnoreCase(tag,"brms")) {
