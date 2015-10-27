@@ -144,18 +144,20 @@ function tagsMatch(result, target) {
 }
 
 function isEnabled(result) {
-	if ((integrationStackSupport && isEarlyAccessEnabled) || !result.hasOwnProperty('tags')) {
+  if ((integrationStackSupport && isEarlyAccessEnabled)) {
 		return true;
 	}
-  if (containsIgnoreCase(result.label, "fuse") || containsIgnoreCase(tag,"brms")) {
+  if (containsIgnoreCase(result.label, "fuse") || containsIgnoreCase(result.label,"brms")) {
     return false;
   }
-	for (var i = 0; i < result.tags.length; i++) {
-		var tag = result.tags[i].toLowerCase();
-		if (containsIgnoreCase(tag,"fuse") || containsIgnoreCase(tag,"brms")) {
-		 	return false;
-		}
-	}
+  if (result.hasOwnProperty('tags')) {
+    for (var i = 0; i < result.tags.length; i++) {
+  		var tag = result.tags[i].toLowerCase();
+  		if (containsIgnoreCase(tag,"fuse") || containsIgnoreCase(tag,"brms")) {
+  		 	return false;
+  		}
+  	}
+  }
 	return true;
 }
 
@@ -313,6 +315,9 @@ function loadWizards(newWizards, newFavorites) {
 
   for (i=0; i < elts.length; i++) {
     var w = elts[i];
+    if (!isEnabled(w)) {
+      continue;
+    }
     var iconUrl = w.hasOwnProperty('iconUrl')?w.iconUrl:"images/icon-default.png";
     var html = replaceAll("@title@", w.label, template);
     	html = replaceAll("@type@", (isQuickStart(w)?'quickstart':'wizard'), html);
