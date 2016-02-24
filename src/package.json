@@ -1,7 +1,7 @@
 {
   "name": "jboss-central-webpage",
   "version": "0.0.1",
-  "description": "JBoss Central Web Page",
+  "description": "Red Hat Central Web Page",
   "author": "Red Hat, Inc.",
   "license": "Eclipse Public License 1.0",
   "devDependencies": {

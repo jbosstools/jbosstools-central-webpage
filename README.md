@@ -1,12 +1,12 @@
-# JBoss Central web page
+# Red Hat Central web page
 
 ## Summary
 
-This repository contains the resources to build the JBoss Central web page, embedded in JBoss Tools 4.3+ and JBoss Developer Studio 9+.
+This repository contains the resources to build the Red Hat Central web page, embedded in JBoss Tools 4.3+ and JBoss Developer Studio 9+.
 
 ## Install
 
-_JBoss Central_ is part of [JBoss Tools](http://jboss.org/tools) from
+_Red Hat Central_ is part of [JBoss Tools](http://jboss.org/tools) from
 which it can be [downloaded and installed](http://jboss.org/tools/download)
 on its own or together with the full JBoss Tools distribution.
 
@@ -28,9 +28,9 @@ At any time, you can pull changes from the upstream and merge them onto your mas
 The general idea is to keep your 'master' branch in-sync with the
 'upstream/master'.
 
-## Building JBoss Central web page
+## Building Red Hat Central web page
 
-To build _JBoss Central web page_ requires specific versions of Java (1.6+) and
+To build _Red Hat Central web page_ requires specific versions of Java (1.6+) and
 +Maven (3.1+). See this [link](https://github.com/jbosstools/jbosstools-devdoc/blob/master/building/readme.md) for more information on how to setup, run and configure build.
 document will guide you through that setup.
 
@@ -53,7 +53,7 @@ But *do not* push changes without having the new and existing unit tests pass!
 
 ## Contribute fixes and features
 
-_JBoss Central web page_ is open source, and we welcome anybody that wants to
+_Red Hat Central web page_ is open source, and we welcome anybody that wants to
 participate and contribute!
 
 If you want to fix a bug or make any changes, please log an issue in
@@ -81,7 +81,7 @@ tests enabled to make sure your changes are still good.
 
 You can then push your topic branch and its changes into your public fork repository:
 
-	$ git push origin jbide-1234         # pushes your topic branch into your public fork of JBoss Central
+	$ git push origin jbide-1234         # pushes your topic branch into your public fork of Red Hat Central
 
 And then [generate a pull-request](http://help.github.com/pull-requests/) where we can
 review the proposed changes, comment on them, discuss them with you,
