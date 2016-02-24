@@ -8,6 +8,11 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
+	<scm>
+		<connection>scm:git:git://github.com/jbosstools/jbosstools-central-webpage.git</connection>
+		<developerConnection>scm:git:git@github.com:jbosstools/jbosstools-central-webpage.git</developerConnection>
+		<url>http://github.com/jbosstools/jbosstools-central-webpage</url>
+	</scm>
 	<build>
 		<plugins>
 			<plugin>
