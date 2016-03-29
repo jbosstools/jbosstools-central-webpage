@@ -9,10 +9,13 @@ var $searchBar   = $('#searchBar'),
     blacklist    = ['h2-console', 'kitchensink-cordova-contacts', 'kitchensink-cordova', 'push-helloworld-cordova', 'forge-from-scratch'],
     results      = [],
     wizards = [];//[{"id":"html5.wizard","label":"HTML5 Project","description":"HTML 5 Project is a sample, deployable Maven 3 project to help you get started developing a Mobile HTML5 web application on JBoss Enterprise Application Platform 6 or JBoss Application Server 7.1.\n This project creates a pure HTML5 based front end which interacts with server side content through RESTful endpoints.","iconUrl":"images/icon-html5.png",},{"id":"openshift.wizard","label":"OpenShift Application","description":"Create any kind of application and deploy it in the cloud using OpenShift from Red Hat.","iconUrl":"images/icon-openshift.gif",},{"id":"forge.wizard","label":"AngularJS Forge","description":"This project is a sample project that will show how to build an JavaEE application with AngularJS, HTML5 and Bootstrap 3 by using JBoss Forge. \nThe application is deployable to JBoss Enterprise Platform 6 or JBoss Application Server 7.1 or higher.","iconUrl":"images/icon-default.png",},{"id":"javaee.wizard","label":"Java EE Web Project","description":"Java EE Web Project is a sample, deployable Maven 3 project to help you get your foot in the door developing with Java EE 6 on JBoss Enterprise Application Platform 6 or JBoss Application Server 7.1. \nThis project is setup to allow you to create a compliant Java EE 6 application using JSF 2.0, CDI 1.0, EJB 3.1, JPA 2.0 and Bean Validation 1.0.","iconUrl":"images/icon-javaee.gif",},{"id":"maven.wizard","label":"Maven Project","description":"Create a Maven-based project.","iconUrl":"images/icon-default.png",},{"id":"hybrid.mobile.wizard","label":"Hybrid Mobile Project","description":"Create a hybrid mobile application using Apache Cordova for cross-platform mobile development.","iconUrl":"images/icon-hybridmobile.gif",}]
-	favorites = [{"id":"jbossdeveloper_quickstart-09f74407","label":"forge-from-scratch","title":"forge-from-scratch: Shows How Forge Can Generate an Application","description":"The `forge-from-scratch` quickstart demonstrates how *JBoss Forge 2* can generate a Java EE (JPA, EJB 3.1, JAX-RS, JSF) web-enabled database application.","tags":["product:EAP-7.0.GA","Forge"]}];
-	showOnStartup = true,
-	integrationStackSupport = false;
-  isEarlyAccessEnabled = false;
+    favorites = [{"id":"jbossdeveloper_quickstart-09f74407","label":"forge-from-scratch","title":"forge-from-scratch: Shows How Forge Can Generate an Application","description":"The `forge-from-scratch` quickstart demonstrates how *JBoss Forge 2* can generate a Java EE (JPA, EJB 3.1, JAX-RS, JSF) web-enabled database application.","tags":["product:EAP-7.0.GA","Forge"]}];
+    showOnStartup = true,
+    integrationStackSupport = false;
+    isEarlyAccessEnabled = false;
+    availablePlugins = [];
+    isFuseAvailable = false;
+    isBRMSAvailable = false;
 
 var searchResults = [{"id":"jbossdeveloper_quickstart-d66221c3","label":"hulabaloo","title":"xml-jaxp: Upload and Parse an XML File Using DOM or SAX","description":"The `xml-jaxp` quickstart demonstrates how to use Servlet and JSF to upload an XML file to JBoss EAP and validate and parse it using DOM or SAX.","tags":["DOM","Servlet","SAX","JAXP", "fuse"]},{"id":"jbossdeveloper_quickstart-09f74407","label":"forge-from-scratch","title":"forge-from-scratch: Shows How Forge Can Generate an Application","description":"The `forge-from-scratch` quickstart demonstrates how *JBoss Forge 2* can generate a Java EE (JPA, EJB 3.1, JAX-RS, JSF) web-enabled database application.","tags":["product:EAP-7.0.GA","Forge"]},
                      {"id":"jbossdeveloper_quickstart-7aa80b86","label":"ejb-security","title":"ejb-security:  Using Java EE Declarative Security to Control Access","description":"The `ejb-security` quickstart demonstrates the use of Java EE declarative security to control access to Servlets and EJBs in JBoss EAP.","tags":["EJB","Security"]},{"id":"jbossdeveloper_quickstart-e927771a","label":"h2-console","title":"h2-console: Example Using the H2 Console with JBoss EAP","description":"The `h2-console` quickstart demonstrates how to use the H2 Console that is bundled with and built specifically for JBoss EAP.","tags":["H2"]},{"id":"jbossdeveloper_quickstart-5f6f6254","label":"jts","title":"jts: Java Transaction Service - Distributed EJB Transactions","description":"The `jts` quickstart shows how to use JTS to perform distributed transactions across multiple containers, fulfilling the properties of an ACID transaction.","tags":["JTS"]},{"id":"jbossdeveloper_quickstart-55d9a642","label":"cluster-ha-singleton","title":"cluster-ha-singleton: A SingletonService Started by a SingletonStartup","description":"The `cluster-ha-singleton` quickstart deploys a Service, wrapped with the SingletonService decorator, and used as a cluster-wide singleton service.","tags":["HASingleton","JNDI","EJB"]},{"id":"jbossdeveloper_quickstart-e0f66336","label":"bean-validation-custom-constraint","title":"bean-validation-custom-constraint: Bean Validation Using Custom Constraints","description":"The `bean-validation-custom-constraint` quickstart demonstrates how to use the Bean Validation API to define custom constraints and validators.","tags":["BV","CDI","JPA"]},{"id":"jbossdeveloper_quickstart-8c871579","label":"kitchensink-ear","title":"kitchensink-ear: Using Multiple Java EE 6 Technologies Deployed as an EAR","description":"The `kitchensink-ear` quickstart demonstrates web-enabled database application, using JSF, CDI, EJB, JPA and Bean Validation, packaged as an EAR.","tags":["BV","EAR","CDI","JPA","JSF","EJB","JAX-RS"]},{"id":"jbossdeveloper_quickstart-f04f101b","label":"cdi-veto","title":"cdi-veto: A Simple CDI Portable Extension Example","description":"The `cdi-veto` quickstart is a simple CDI Portable Extension that uses SPI classes to show how to remove beans and inject JPA entities into an application.","tags":["CDI"]},{"id":"jbossdeveloper_quickstart-cf8f65ad","label":"bean-validation","title":"bean-validation: Bean Validation Tested Using Arquillian","description":"The `bean-validation` quickstart provides Arquillian tests to demonstrate how to use CDI 1.0, JPA 2.0 and Bean Validation 1.0.","tags":["BV","CDI","JPA"]},{"id":"jbossdeveloper_quickstart-7abbd519","label":"tasks","title":"tasks: Test JPA with Arquillian","description":"The `tasks` quickstart includes a persistence unit and sample persistence code to demonstrates how to use JPA 2.0 for database access in JBoss EAP.","tags":["JPA","Arquillian"]},{"id":"jbossdeveloper_quickstart-11a4307c","label":"helloworld-mdb-propertysubstitution","title":"helloworld-mdb-propertysubstitution: MDB (Message-Driven Bean) Using Property Substitution","description":"The `helloworld-mdb-propertysubstitution` quickstart demonstrates the use of *JMS 1.1* and *EJB 3.1 MDB*, enabling property substitution with annotations.","tags":["JMS","MDB","EJB"]},{"id":"jbossdeveloper_quickstart-8bc46068","label":"greeter","title":"greeter: Demonstrates CDI, JPA, JTA, EJB 3.1, and JSF","description":"The `greeter` quickstart demonstrates the use of *CDI 1.0*, *JPA 2.0*, *JTA 1.1*, *EJB 3.1* and *JSF 2.1* in JBoss EAP.","tags":["JTA","CDI","JPA","JSF","EJB"]},{"id":"jbossdeveloper_quickstart-c3acf4be","label":"temperature-converter","title":"temperature-converter: Stateless Session EJB (SLSB)","description":"The `temperature-converter` quickstart does temperature conversion using an *EJB 3.1 Stateless Session Bean* (SLSB), *CDI*, and a *JSF* front-end client.","tags":["CDI","SLSB EJB","JSF"]},{"id":"jbossdeveloper_quickstart-63c4c140","label":"wsba-coordinator-completion-simple","title":"wsba-coordinator-completion-simple: Example of a WS-BA Enabled JAX-WS Web Service","description":"The `wsba-coordinator-completion-simple` quickstart deploys a WS-BA (WS Business Activity) enabled JAX-WS Web service WAR (CoordinatorCompletion protocol).","tags":["WS-BA","JAX-WS"]},{"id":"jbossdeveloper_quickstart-30255298","label":"cdi-alternative","title":"cdi-alternative: Demonstrates CDI Alternatives","description":"The `cdi-alternative` quickstart demonstrates how to create a bean that can be implemented for different purposes without changing the source code.","tags":["JSP","CDI","Servlet"]},{"id":"jbossdeveloper_quickstart-d2f65af3","label":"ejb-asynchronous","title":"ejb-asynchronous: EJB with asynchronous methods","description":"The `ejb-asynchronous` quickstart demonstrates the behavior of asynchronous EJB invocations by a deployed EJB and a remote client and how to handle errors.","tags":["Asynchronous EJB"]},{"id":"jbossdeveloper_quickstart-c4b63524","label":"mail","title":"mail: E-Mail Example using CDI and JSF","description":"The `mail` quickstart demonstrates how to send email using CDI 1.0 and JSF 2.1 and the default Mail provider that ships with JBoss EAP.","tags":["JavaMail","CDI","JSF"]},{"id":"jbossdeveloper_quickstart-7d1094da","label":"ejb-in-ear","title":"ejb-in-ear: Deployment of an EAR Containing a JSF WAR and EJB JAR","description":"The `ejb-in-ear` quickstart demonstrates how to deploy an EAR archive that contains a *JSF 2.1* WAR and an *EJB 3.1* JAR.","tags":["EAR","EJB"]},{"id":"jbossdeveloper_quickstart-3f82586e","label":"cdi-interceptors","title":"cdi-interceptors: Example Using CDI Interceptors","description":"The `cdi-interceptors` quickstart demonstrates how to use CDI interceptors for cross-cutting concerns such as logging and simple auditing.","tags":["JPA","JSF","EJB"]},{"id":"jbossdeveloper_quickstart-e7abf822","label":"app-client","title":"app-client: Use the JBoss EAP Application Client Container","description":"The `app-client` quickstart demonstrates how to code and package a client app and use the JBoss EAP client container to start the client Main program.","tags":["EAR","AppClient","EJB"]},{"id":"jbossdeveloper_quickstart-fdec999a","label":"kitchensink-ml-ear","title":"kitchensink-ml-ear: Localized Version of the kitchensink-ear Quickstart","description":"The `kitchensink-ml-ear` quickstart demonstrates a localized database application, using JSF, CDI, EJB, JPA and Bean Validation, packaged as an EAR.","tags":["l10n","BV","EAR","CDI","JPA","JSF","EJB","JAX-RS","i18n"]},{"id":"jbossdeveloper_quickstart-05dc10e8","label":"kitchensink-ml","title":"kitchensink-ml: Localized Version of the kitchensink Quickstart","description":"The `kitchensink-ml` quickstart demonstrates a localized Java EE 6 compliant application using JSF, CDI, EJB, JPA and Bean Validation.","tags":["l10n","BV","CDI","JPA","JSF","EJB","JAX-RS","i18n"]},{"id":"jbossdeveloper_quickstart-9a356589","label":"bmt","title":"bmt: Bean Managed Transactions with JPA and JTA","description":"The `bmt` quickstart demonstrates Bean-Managed Transactions (BMT), showing how to manually manage transaction demarcation while accessing JPA entities.","tags":["BMT","EJB"]},{"id":"jbossdeveloper_quickstart-6af0aa62","label":"ejb-timer","title":"ejb-timer: Example of EJB Timer Service - @Schedule and @Timeout","description":"The `ejb-timer` quickstart demonstrates how to use the EJB 3.1 timer service `@Schedule` and `@Timeout` annotations with JBoss EAP.","tags":["EJB 3.1 Timer"]},{"id":"jbossdeveloper_quickstart-0eb538cc","label":"cdi-portable-extension","title":"cdi-portable-extension: CDI Portable Extension","description":"The `cdi-portable-extension` quickstart demonstrates a simple CDI Portable Extension that uses SPI classes to inject beans with data from an XML file.","tags":["CDI"]},{"id":"jbossdeveloper_quickstart-2eb1d12a","label":"helloworld-mdb","title":"helloworld-mdb: Helloworld Using an MDB (Message-Driven Bean)","description":"The `helloworld-mdb` quickstart uses *JMS 1.1* and *EJB 3.1 Message-Driven Bean* (MDB) to create and deploy JMS topic and queue resources in JBoss EAP.","tags":["JMS","MDB","EJB"]},{"id":"jbossdeveloper_quickstart-736ab533","label":"cdi-stereotype","title":"cdi-stereotype: Example Using CDI Stereotype.","description":"The `cdi-stereotype` quickstart demonstrates how to apply CDI stereotypes to beans to encapsulate CDI interceptor bindings and CDI alternatives.","tags":["JPA","JSF","EJB"]},{"id":"jbossdeveloper_quickstart-c07fd3a1","label":"helloworld-jms","title":"helloworld-jms: Helloworld JMS Example","description":"The `helloworld-jms` quickstart demonstrates the use of external JMS clients with JBoss EAP.","tags":["JMS"]},{"id":"jbossdeveloper_quickstart-ec93e82e","label":"numberguess","title":"numberguess: Example Using CDI and JSF","description":"The `numberguess` quickstart demonstrates the use of *CDI 1.0*  (Contexts and Dependency Injection) and *JSF 2.1* (JavaServer Faces) in JBoss EAP.","tags":["CDI","JSF"]},{"id":"jbossdeveloper_quickstart-19735541","label":"inter-app","title":"inter-app: Communicate Between Two Applications Using EJB and CDI","description":"The `inter-app` quickstart shows you how to use a shared API JAR and an EJB to provide inter-application communication between two WAR deployments.","tags":["CDI","EJB","JSF"]},{"id":"jbossdeveloper_quickstart-61ea7eff","label":"websocket-hello","title":"jboss-websocket-hello: A simple WebSocket application","description":"The `websocket-hello` quickstart demonstrates how to create a simple WebSocket application.","tags":["CDI","JSF","WebSocket"]},{"id":"jbossdeveloper_quickstart-941f8005","label":"servlet-security","title":"servlet-security:  Using Java EE Declarative Security to Control Servlet Access","description":"The `servlet-security` quickstart demonstrates the use of Java EE declarative security to control access to Servlets and Security in JBoss EAP.","tags":["Servlet","Security"]},]
@@ -20,11 +23,11 @@ var searchResults = [{"id":"jbossdeveloper_quickstart-d66221c3","label":"hulabal
 
 $(function () {
   $search.keyup(function (e) {
-  	if (e.keyCode == 27){
-  		//Clear on ESC
-		$clearSearch.click();
-		return;
-  	}
+    if (e.keyCode == 27){
+      //Clear on ESC
+    $clearSearch.click();
+    return;
+    }
     toggleSearch();
   });
 
@@ -37,7 +40,7 @@ $(function () {
 
 function toggleSearch(terms) {
   if (terms != null) {
-  	$search.val(terms);
+    $search.val(terms);
   }
   terms = $search.val().trim().toLowerCase();
   var searching = Boolean( terms );
@@ -94,14 +97,14 @@ function displayPage(page, eltPerPage, terms) {
       size = eltPerPage - (totalPages*eltPerPage-results.length);
     }
     try {
-    	for (var i=start; i< (start+size);i++) {
-    		var $div = result2Html(results[i]);
-    		$div.find('a, p').highlight(terms);
-    		$div.appendTo($list);
-    	}
+      for (var i=start; i< (start+size);i++) {
+        var $div = result2Html(results[i]);
+        $div.find('a, p').highlight(terms);
+        $div.appendTo($list);
+      }
 
     } catch (e) {
-    	alert(e);
+      alert(e);
     }
   } else {
     $list.append("<div>No quickstarts match your criteria</div>");
@@ -122,47 +125,60 @@ function filter(terms) {
      || containsIgnoreCase(result.description, terms)
      || tagsMatch(result, terms)) {
       filtered.push(result);
-	}
+  }
   }
   return filtered;
 }
 
 function tagsMatch(result, target) {
-	if (!result.hasOwnProperty('tags')) {
-		return false;
-	}
-	for (var i = 0; i < result.tags.length; i++) {
-		var tag = cleanUpTag(result.tags[i].toLowerCase());
-		if (containsIgnoreCase(tag, ":")) {
-			tag = tag.split(":")[1];
-		}
-		if (tag != "central" && tag != "wizard" && containsIgnoreCase(tag, target)) {
-		 	return true;
-		}
-	}
-	return false;
+  if (!result.hasOwnProperty('tags')) {
+    return false;
+  }
+  for (var i = 0; i < result.tags.length; i++) {
+    var tag = cleanUpTag(result.tags[i].toLowerCase());
+    if (containsIgnoreCase(tag, ":")) {
+      tag = tag.split(":")[1];
+    }
+    if (tag != "central" && tag != "wizard" && containsIgnoreCase(tag, target)) {
+       return true;
+    }
+  }
+  return false;
 }
 
 function isEnabled(result) {
-  if ((integrationStackSupport && isEarlyAccessEnabled)) {
-		return true;
-	}
-  if (containsIgnoreCase(result.label, "fuse") || containsIgnoreCase(result.label,"brms")) {
+  if ((integrationStackSupport && isEarlyAccessEnabled)
+  || (isFuseAvailable && isBRMSAvailable)) {
+    return true;
+  }
+  if ((containsIgnoreCase(result.label, "fuse") && !isFuseAvailable)
+    || (containsIgnoreCase(result.label,"brms") && !isBRMSAvailable)) {
     return false;
   }
+
+
   if (result.hasOwnProperty('tags')) {
     for (var i = 0; i < result.tags.length; i++) {
-  		var tag = result.tags[i].toLowerCase();
-  		if (containsIgnoreCase(tag,"fuse") || containsIgnoreCase(tag,"brms")) {
-  		 	return false;
-  		}
-  	}
+      var tag = result.tags[i].toLowerCase();
+      if ((containsIgnoreCase(tag,"fuse") && !isFuseAvailable)
+      || (containsIgnoreCase(tag,"brms") && !isBRMSAvailable)) {
+         return false;
+      }
+    }
   }
-	return true;
+  return true;
 }
 
 function containsIgnoreCase(value, target) {
-	return value.toLowerCase().indexOf(target) > -1;
+  if (value.constructor === Array) {
+    for (var i = 0; i < value.length; i++) {
+      if (containsIgnoreCase(value[i]), target) {
+        return true;
+      }
+    }
+    return false;
+  }
+  return value.toLowerCase().indexOf(target) > -1;
 }
 
 // Home - Popovers
@@ -173,9 +189,9 @@ $(function () {
   addPopover($('.popper'));
 
   var content = function () {
-	  $content = $(this).next('.popper-content');
-	  $checkbox = $content.find('.showOnStartup');
-	  $checkbox.attr("checked", showOnStartup);
+    $content = $(this).next('.popper-content');
+    $checkbox = $content.find('.showOnStartup');
+    $checkbox.attr("checked", showOnStartup);
       return $content.html();
   };
 
@@ -184,28 +200,28 @@ $(function () {
 
 
 function closePopover(checkbox) {
-	var $parent = $(checkbox).parent().parent().parent();
-	setTimeout(function() {
-	  $parent.popover('hide');
-	}, 500);
-	var show = checkbox.checked;
-	if (show != showOnStartup) {
-		showOnStartup = show;
-		storeShowOnStartup();
-	}
+  var $parent = $(checkbox).parent().parent().parent();
+  setTimeout(function() {
+    $parent.popover('hide');
+  }, 500);
+  var show = checkbox.checked;
+  if (show != showOnStartup) {
+    showOnStartup = show;
+    storeShowOnStartup();
+  }
 }
 
 function addPopover(element, placement, trigger, content) {
   if (placement == null) {
-	  placement = 'auto bottom';
+    placement = 'auto bottom';
   }
   if (trigger == null) {
-	  trigger = 'hover';
+    trigger = 'hover';
   }
   if (content == null) {
-	  content = function () {
-	        return $(this).next('.popper-content').html();
-	  };
+    content = function () {
+          return $(this).next('.popper-content').html();
+    };
   }
   element.popover({
     container: 'body',
@@ -235,27 +251,27 @@ function result2Html(result) {
 
 
 function buildTags(result) {
-	if (!result.hasOwnProperty('tags')) {
-		return "";
-	}
-	var tags = '<ul class="tags list-inline">';
-	for (var i=0; i< result.tags.length; i++) {
-		var tag = result.tags[i].toLowerCase();
-		var isRuntime = false;
-		var tagValue = tag;
-		var specialClass = "";
-		if (containsIgnoreCase(tag, ":")) {
-		  var specialTag = tag.split(":");
-		  specialClass = specialTag[0];
-		  tagValue = cleanUpTag(specialTag[1]);
-		}
+  if (!result.hasOwnProperty('tags')) {
+    return "";
+  }
+  var tags = '<ul class="tags list-inline">';
+  for (var i=0; i< result.tags.length; i++) {
+    var tag = result.tags[i].toLowerCase();
+    var isRuntime = false;
+    var tagValue = tag;
+    var specialClass = "";
+    if (containsIgnoreCase(tag, ":")) {
+      var specialTag = tag.split(":");
+      specialClass = specialTag[0];
+      tagValue = cleanUpTag(specialTag[1]);
+    }
 
-		if (tagValue != "central" && tagValue != "wizard") {
-			tags += '<li class="'+specialClass+'">'+tagValue.toUpperCase() +'</li>';
-		}
-	}
-	tags += '<ul>';
-	return tags;
+    if (tagValue != "central" && tagValue != "wizard") {
+      tags += '<li class="'+specialClass+'">'+tagValue.toUpperCase() +'</li>';
+    }
+  }
+  tags += '<ul>';
+  return tags;
 }
 
 function loadBuzz(buzzFeed) {
@@ -273,7 +289,7 @@ function loadBuzz(buzzFeed) {
       $buzzDiv.html(content);
       $buzzDiv.appendTo($buzz);
     } catch(O_o) {
-	  //disabled for compatibility with old Xulrunner 1.9
+    //disabled for compatibility with old Xulrunner 1.9
       //console.log("Error loading buzz :"+O_o.message);
     }
 
@@ -285,10 +301,10 @@ function loadBuzz(buzzFeed) {
 
 function loadWizards(newWizards, newFavorites) {
   if (newWizards != null) {
-	  wizards = newWizards;
+    wizards = newWizards;
   }
   if (newFavorites != null) {
-	  favorites = newFavorites;
+    favorites = newFavorites;
   }
 
   var elts = wizards.concat(favorites);
@@ -320,8 +336,8 @@ function loadWizards(newWizards, newFavorites) {
     }
     var iconUrl = w.hasOwnProperty('iconUrl')?w.iconUrl:"images/icon-default.png";
     var html = replaceAll("@title@", w.label, template);
-    	html = replaceAll("@type@", (isQuickStart(w)?'quickstart':'wizard'), html);
-    	html = replaceAll("@id@", w.id, html);
+      html = replaceAll("@type@", (isQuickStart(w)?'quickstart':'wizard'), html);
+      html = replaceAll("@id@", w.id, html);
         html = replaceAll("@iconUrl@", iconUrl, html);
         html = replaceAll("@description@", w.description, html);
         html = replaceAll("@product@", getProduct(w), html);
@@ -332,16 +348,16 @@ function loadWizards(newWizards, newFavorites) {
 }
 
 function getProduct(qs) {
-	if (!qs.hasOwnProperty('tags')) {
-		return "";
-	}
-	for (var i = 0; i < qs.tags.length; i++) {
-		var tag = cleanUpTag(qs.tags[i]);
-		if (containsIgnoreCase(tag, "product:")) {
-			return "<em>Product: " +  tag.split(":")[1].toUpperCase() +"</em>";
-		}
-	}
-	return "";
+  if (!qs.hasOwnProperty('tags')) {
+    return "";
+  }
+  for (var i = 0; i < qs.tags.length; i++) {
+    var tag = cleanUpTag(qs.tags[i]);
+    if (containsIgnoreCase(tag, "product:")) {
+      return "<em>Product: " +  tag.split(":")[1].toUpperCase() +"</em>";
+    }
+  }
+  return "";
 }
 
 function replaceAll(find, replace, str) {
@@ -382,20 +398,20 @@ function registerButtonClicks() {
 }
 
 function registerTagClicks() {
-	$("#resultList").on("click", " ul.tags li", function(e) {
-		var tag = $(this).text();
-		toggleSearch(tag);
-	});
+  $("#resultList").on("click", " ul.tags li", function(e) {
+    var tag = $(this).text();
+    toggleSearch(tag);
+  });
 }
 
 function handleEarlyAccess(enabled, earlyAccessText) {
   isEarlyAccessEnabled = enabled;
   if (enabled) {
-		$("#earlyaccess").html(earlyAccessText);
-		$("#earlyaccess").show();
-	} else {
-		$("#earlyaccess").hide();
-	}
+    $("#earlyaccess").html(earlyAccessText);
+    $("#earlyaccess").show();
+  } else {
+    $("#earlyaccess").hide();
+  }
 
 }
 
@@ -419,57 +435,66 @@ function delegateToIDE(type, data) {
 }
 
 function setShowOnStartup(show) {
-	showOnStartup = show == 'true';
-	$(".showOnStartup").attr("checked", showOnStartup);
+  showOnStartup = show == 'true';
+  $(".showOnStartup").attr("checked", showOnStartup);
 }
 
 function storeShowOnStartup() {
-	delegateToIDE("showonstartup", showOnStartup);
+  delegateToIDE("showonstartup", showOnStartup);
 }
 
 function isQuickStart(data) {
-	return data.hasOwnProperty('title');
+  return data.hasOwnProperty('title');
 }
 
 function setIntegrationStackSupport(value) {
-	integrationStackSupport = value;
+  integrationStackSupport = value;
 }
 
+function setAvailablePlugins(value) {
+  availablePlugins = value;
+  isBRMSAvailable = containsIgnoreCase(availablePlugins, "org.jbpm.eclipse");
+  isFuseAvailable = containsIgnoreCase(availablePlugins, "org.fusesource.ide.tooling"); //I think that should be enough
+                    //|| containsIgnoreCase(availablePlugins, "org.fusesource.ide.foundation.core") //for 8.x, just in case
+                    //|| containsIgnoreCase(availablePlugins, "org.fusesource.ide.commons");//for 7.x, just in case
+}
+
+
 function drop(event) {
-	event.preventDefault();
-	var data;
-	var msie = document.documentMode;
-	if (msie) {
-		data = event.dataTransfer.getData("Text");
-	} else {
-		data = event.dataTransfer.getData("text/uri-list");
-	}
-	var DOWNLOAD_JBOSS_ORG_JBOSSTOOLS_CENTRAL_INSTALL_CONNECTORS = "http://download.jboss.org/jbosstools/central/install?connectors=";
-	var LEGACY_DEVSTUDIO_JBOSS_COM_CENTRAL_INSTALL_CONNECTORS = "https://devstudio.jboss.com/central/install?connectors=";
-	var DEVSTUDIO_REDHAT_COM_CENTRAL_INSTALL_CONNECTORS = "https://devstudio.redhat.com/central/install?connectors=";
-	var connectorIds;
-	if (data.indexOf(DOWNLOAD_JBOSS_ORG_JBOSSTOOLS_CENTRAL_INSTALL_CONNECTORS) === 0) {
-		connectorIds = data.replace(DOWNLOAD_JBOSS_ORG_JBOSSTOOLS_CENTRAL_INSTALL_CONNECTORS, "");
-	} else if (data.indexOf(DEVSTUDIO_REDHAT_COM_CENTRAL_INSTALL_CONNECTORS) === 0) {
-		connectorIds = url.replace(DEVSTUDIO_REDHAT_COM_CENTRAL_INSTALL_CONNECTORS, "");
-	} else if (data.indexOf(LEGACY_DEVSTUDIO_JBOSS_COM_CENTRAL_INSTALL_CONNECTORS) === 0) {
-		connectorIds = url.replace(LEGACY_DEVSTUDIO_JBOSS_COM_CENTRAL_INSTALL_CONNECTORS, "");
-	}
-	delegateToIDE("drop", connectorIds);
-	return false;
+  event.preventDefault();
+  var data;
+  var msie = document.documentMode;
+  if (msie) {
+    data = event.dataTransfer.getData("Text");
+  } else {
+    data = event.dataTransfer.getData("text/uri-list");
+  }
+  var DOWNLOAD_JBOSS_ORG_JBOSSTOOLS_CENTRAL_INSTALL_CONNECTORS = "http://download.jboss.org/jbosstools/central/install?connectors=";
+  var LEGACY_DEVSTUDIO_JBOSS_COM_CENTRAL_INSTALL_CONNECTORS = "https://devstudio.jboss.com/central/install?connectors=";
+  var DEVSTUDIO_REDHAT_COM_CENTRAL_INSTALL_CONNECTORS = "https://devstudio.redhat.com/central/install?connectors=";
+  var connectorIds;
+  if (data.indexOf(DOWNLOAD_JBOSS_ORG_JBOSSTOOLS_CENTRAL_INSTALL_CONNECTORS) === 0) {
+    connectorIds = data.replace(DOWNLOAD_JBOSS_ORG_JBOSSTOOLS_CENTRAL_INSTALL_CONNECTORS, "");
+  } else if (data.indexOf(DEVSTUDIO_REDHAT_COM_CENTRAL_INSTALL_CONNECTORS) === 0) {
+    connectorIds = url.replace(DEVSTUDIO_REDHAT_COM_CENTRAL_INSTALL_CONNECTORS, "");
+  } else if (data.indexOf(LEGACY_DEVSTUDIO_JBOSS_COM_CENTRAL_INSTALL_CONNECTORS) === 0) {
+    connectorIds = url.replace(LEGACY_DEVSTUDIO_JBOSS_COM_CENTRAL_INSTALL_CONNECTORS, "");
+  }
+  delegateToIDE("drop", connectorIds);
+  return false;
 }
 
 function registerDND() {
-	$(document.body).bind("dragover", function(event) {
-		event.preventDefault();
-	}, false);
-	$(document.body).bind("dragenter", function(event) {
-		event.preventDefault();
-	}, false);
-	$(document.body).bind("drop", function(e) {
-		e.preventDefault();
-		return false;
-	});
+  $(document.body).bind("dragover", function(event) {
+    event.preventDefault();
+  }, false);
+  $(document.body).bind("dragenter", function(event) {
+    event.preventDefault();
+  }, false);
+  $(document.body).bind("drop", function(e) {
+    e.preventDefault();
+    return false;
+  });
 }
 
 // ==========================
@@ -492,9 +517,9 @@ $(document).ready(function() {
 });
 
 function cleanUpTag(tag) {
-	var weirdTagIndex = tag.indexOf("-jboss_as_quickstarts");
-	if (weirdTagIndex > -1) {
-		tag = tag.substring(0, weirdTagIndex);
-	}
-	return tag;
+  var weirdTagIndex = tag.indexOf("-jboss_as_quickstarts");
+  if (weirdTagIndex > -1) {
+    tag = tag.substring(0, weirdTagIndex);
+  }
+  return tag;
 }
