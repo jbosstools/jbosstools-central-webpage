@@ -114,7 +114,6 @@ function displayPage(page, eltPerPage, terms) {
 function filter(terms) {
   var filtered = [];
   var results = wizards.concat(searchResults);
-
   for (var i=0; i< results.length; i++) {
     var result = results[i];
     if ($.inArray(result.label, blacklist) > -1
@@ -151,8 +150,8 @@ function isEnabled(result) {
   || (isFuseAvailable && isBRMSAvailable)) {
     return true;
   }
-  if ((containsIgnoreCase(result.label, "fuse") && !isFuseAvailable)
-    || (containsIgnoreCase(result.label,"brms") && !isBRMSAvailable)) {
+  if (isFuseAndUnavailable(result.label)
+    || isBRMSAndUnavailable(result.label)) {
     return false;
   }
 
@@ -160,8 +159,8 @@ function isEnabled(result) {
   if (result.hasOwnProperty('tags')) {
     for (var i = 0; i < result.tags.length; i++) {
       var tag = result.tags[i].toLowerCase();
-      if ((containsIgnoreCase(tag,"fuse") && !isFuseAvailable)
-      || (containsIgnoreCase(tag,"brms") && !isBRMSAvailable)) {
+      if (isFuseAndUnavailable(tag)
+      || isBRMSAndUnavailable(tag)) {
          return false;
       }
     }
@@ -169,10 +168,22 @@ function isEnabled(result) {
   return true;
 }
 
+function isFuseAndUnavailable(label) {
+  return containsIgnoreCase(label,"fuse") &&
+        (!isFuseAvailable &&
+         !(integrationStackSupport && isEarlyAccessEnabled));
+}
+function isBRMSAndUnavailable(label) {
+  return containsIgnoreCase(label,"brms") &&
+        (!isBRMSAvailable &&
+         !integrationStackSupport);
+}
+
+
 function containsIgnoreCase(value, target) {
   if (value.constructor === Array) {
     for (var i = 0; i < value.length; i++) {
-      if (containsIgnoreCase(value[i]), target) {
+      if (containsIgnoreCase(value[i], target)) {
         return true;
       }
     }
