@@ -27,6 +27,7 @@ body {
   .container-bg {
     background: none;
   }
+  overflow: hidden;
 }
 
 .settings {
@@ -387,10 +388,16 @@ a.list-group-item-heading {
 // --------------------------------------------------
 .popover {
   max-width: 296px;
+  position: relative;
 }
 .popper-content {
   display: none;
 }
+
+.popover.left {
+  margin-right: -115px; 
+}
+
 .popover-content {
   padding: 5px 13px 10px 10px;
   h4 {
