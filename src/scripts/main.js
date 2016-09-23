@@ -206,7 +206,7 @@ $(function () {
       return $content.html();
   };
 
-  addPopover($('.settings'), 'auto left', 'click', content);
+  addPopover($('.settings'), 'auto left', 'click', content, '#settingsContainer .settings');
 });
 
 
@@ -222,7 +222,7 @@ function closePopover(checkbox) {
   }
 }
 
-function addPopover(element, placement, trigger, content) {
+function addPopover(element, placement, trigger, content, container) {
   if (placement == null) {
     placement = 'auto bottom';
   }
@@ -234,8 +234,11 @@ function addPopover(element, placement, trigger, content) {
           return $(this).next('.popper-content').html();
     };
   }
+  if (container == null){
+  	container = 'body';
+  }
   element.popover({
-    container: 'body',
+    container: container,
     placement: placement,
     trigger: trigger,
     html: true,
