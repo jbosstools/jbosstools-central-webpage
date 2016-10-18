@@ -144,20 +144,20 @@ function tagsMatch(result, target) {
 }
 
 function isEnabled(result) {
-  if ((integrationStackSupport && isEarlyAccessEnabled)) {
-		return true;
-	}
-  if (containsIgnoreCase(result.label, "fuse") || containsIgnoreCase(result.label,"brms")) {
-    return false;
-  }
-  if (result.hasOwnProperty('tags')) {
-    for (var i = 0; i < result.tags.length; i++) {
-  		var tag = result.tags[i].toLowerCase();
-  		if (containsIgnoreCase(tag,"fuse") || containsIgnoreCase(tag,"brms")) {
-  		 	return false;
-  		}
-  	}
-  }
+  // if ((integrationStackSupport && isEarlyAccessEnabled)) {
+	// 	return true;
+	// }
+  // if (containsIgnoreCase(result.label, "fuse") || containsIgnoreCase(result.label,"brms")) {
+  //   return false;
+  // }
+  // if (result.hasOwnProperty('tags')) {
+  //   for (var i = 0; i < result.tags.length; i++) {
+  // 		var tag = result.tags[i].toLowerCase();
+  // 		if (containsIgnoreCase(tag,"fuse") || containsIgnoreCase(tag,"brms")) {
+  // 		 	return false;
+  // 		}
+  // 	}
+  // }
 	return true;
 }
 
