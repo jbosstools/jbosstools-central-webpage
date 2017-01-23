@@ -11,17 +11,19 @@ html {
 }
 
 body {
-  background: url(../images/background.jpg) top center repeat-x;
+  background: url(../images/background_img.png) top right no-repeat;
   background-size: auto 440px;
   color: #666;
   margin: 0px;
   min-height: 100%;
+  font-family: "Overpass", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #242424;
   @media (min-width: $screen-md-min) {
     background-size: auto 500px;
   }
 
   .highlight {
-    background: #FFFFA0;
+    background: #F8D580;
   }
 
   .container-bg {
@@ -36,7 +38,7 @@ body {
    margin-top:5px;
    .glyphicon-cog {
     cursor:pointer;
-    color: #aaa;
+    color: #eee;
     font-size:1.5em;
     @include transition(all 0.3s ease-in-out)
    }
@@ -49,9 +51,9 @@ body {
   text-align: center;;
   background: none;
   margin-bottom: 0;
-  padding: 0px 0 10px;
+  padding: 20px 0 10px;
   @media (min-width: $screen-md-min) {
-    padding: 5px 0 20px;
+    padding: 30px 0 20px;
   }
   h1 {
     margin-bottom: 15px;
@@ -63,7 +65,14 @@ body {
   }
   h2 {
     margin-top: 5px;
+    color: #000000;
+    #welcometext
+    {
+      font-weight: normal;
+      font-size: .75em ;
+    }
   }
+
   p {
     padding-top: 5px;
     font-size: 14px;
@@ -195,7 +204,7 @@ $carousel-top: 40px;
     .glyphicon {
       top: 3px;
       font-size: 14px;
-      color: #d9d9d9;
+      color: #eee;
       margin-right: 6px;
     }
   }
@@ -204,9 +213,7 @@ $carousel-top: 40px;
 .home-icons {
   //margin-bottom: 15px;
   padding: 20px 0;
-  background-color: #eee;
-  border: 2px solid #ccc;
-  border-width: 2px 0;
+  background: url(../images/background_img_bottom.png) bottom left no-repeat rgba(230,230,230,0.3);
   @media (min-width: $screen-sm-min) {
     //margin-bottom: 35px;
   }
@@ -231,7 +238,7 @@ $carousel-top: 40px;
     margin-right: 25%;
   }
   .icon {
-    opacity: .3;
+    //opacity: .3;
     background-size: contain;
     background-repeat: no-repeat;
     width: 40px;
@@ -436,8 +443,11 @@ a.list-group-item-heading {
   display: none;
   margin-top: 0px;
   em {
-    padding: 5px;
+    padding: 10px;
     text-align: center;
     display: block;
+    color: #ed8116;
+    font-size:1.3em;
+    font-weight: bold;
   }
 }
