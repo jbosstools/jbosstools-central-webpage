@@ -14,7 +14,8 @@
         <include>js/**</include>
         <include>css/**</include>
         <include>lib/**</include>
-        <include>images/**</include>
+        <include>images/*.gif</include>
+        <include>images/*.png</include>
         <include>*.html</include>
       </includes>
     </fileSet>
