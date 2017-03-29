@@ -429,6 +429,16 @@ function handleEarlyAccess(enabled, earlyAccessText) {
 
 }
 
+function handleEarlyAccess(enabled, earlyAccessText) {
+	if (enabled) {
+		$("#earlyaccess").html(earlyAccessText);
+		$("#earlyaccess").show();
+	} else {
+		$("#earlyaccess").hide();
+	}
+
+}
+
 function toggleEarlyAccess(enabled) {
   isEarlyAccessEnabled = enabled;
   if (enabled) {
