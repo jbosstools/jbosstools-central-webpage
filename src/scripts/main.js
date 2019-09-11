@@ -483,7 +483,7 @@ function drop(event) {
   } else {
     data = event.dataTransfer.getData("text/uri-list");
   }
-  var DOWNLOAD_JBOSS_ORG_JBOSSTOOLS_CENTRAL_INSTALL_CONNECTORS = "http://download.jboss.org/jbosstools/central/install?connectors=";
+  var DOWNLOAD_JBOSS_ORG_JBOSSTOOLS_CENTRAL_INSTALL_CONNECTORS = "https://download.jboss.org/jbosstools/central/install?connectors=";
   var LEGACY_DEVSTUDIO_JBOSS_COM_CENTRAL_INSTALL_CONNECTORS = "https://devstudio.jboss.com/central/install?connectors=";
   var DEVSTUDIO_REDHAT_COM_CENTRAL_INSTALL_CONNECTORS = "https://devstudio.redhat.com/central/install?connectors=";
   var connectorIds;
